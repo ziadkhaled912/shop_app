@@ -4,6 +4,7 @@ import 'package:shop_app_final/modules/Shop_screen/builder_widget.dart';
 import 'package:shop_app_final/modules/home_layout/cubit/cubit.dart';
 import 'package:shop_app_final/modules/home_layout/cubit/states.dart';
 import 'package:flutter_conditional_rendering/flutter_conditional_rendering.dart';
+import 'package:shop_app_final/shared/componants/loading_components/shop_loading/home_loading.dart';
 
 class ShopScreen extends StatelessWidget {
   @override
@@ -42,7 +43,7 @@ class ShopScreen extends StatelessWidget {
           body: Conditional.single(
             context: context,
             conditionBuilder: (context) => homeModel != null,
-            fallbackBuilder: (context) => Center(child: CircularProgressIndicator()),
+            fallbackBuilder: (context) => HomeLoading(),
             widgetBuilder: (context) => BuilderWidget(model: homeModel),
           ),
         );

@@ -43,7 +43,8 @@ dev_dependencies:
   fluttertoast: ^8.0.7
   font_awesome_flutter: ^9.1.0
   flutter_swiper: 1.1.6
-  extended_image: ^3.0.0-non-null-safety
+  cached_network_image: ^3.0.0
+  shimmer: ^2.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

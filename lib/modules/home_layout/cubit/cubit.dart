@@ -5,8 +5,8 @@ import 'package:shop_app_final/models/home_model.dart';
 import 'package:shop_app_final/modules/Shop_screen/Shop_screen.dart';
 import 'package:shop_app_final/modules/cart/cart_screen.dart';
 import 'package:shop_app_final/modules/category/categories_screen.dart';
+import 'package:shop_app_final/modules/favourites/favourites_screen.dart';
 import 'package:shop_app_final/modules/home_layout/cubit/states.dart';
-import 'package:shop_app_final/modules/search/search_screen.dart';
 import 'package:shop_app_final/modules/settings/settings_screen.dart';
 import 'package:shop_app_final/shared/componants/constants.dart';
 import 'package:shop_app_final/shared/network/end_points.dart';
@@ -25,7 +25,7 @@ class HomeCubit extends Cubit<HomeStates>
   List<Widget> bottomScreens = [
     ShopScreen(),
     CategoriesScreen(),
-    SearchScreen(),
+    FavouritesScreen(),
     CartScreen(),
     SettingsScreen(),
   ];

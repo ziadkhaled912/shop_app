@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:shop_app_final/models/home_model.dart';
 import 'package:shop_app_final/modules/Shop_screen/build_grid_product.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:shimmer/shimmer.dart';
 
 
 class BuilderWidget extends StatelessWidget {
@@ -14,6 +16,7 @@ class BuilderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children:
         [
           Padding(
@@ -29,22 +32,55 @@ class BuilderWidget extends StatelessWidget {
                 viewportFraction: 1.0,
                 pagination: new SwiperPagination(),
                 itemBuilder: (BuildContext context,int index){
-                  return new Image.network("${model.data.banners[index].image}",
+                  return new CachedNetworkImage(
+                    imageUrl: model.data.banners[index].image,
+                    errorWidget: (context, url, error) => Center(child: Icon(Icons.error)),
                     fit: BoxFit.fill,
+                    placeholder: (context, url) => Shimmer.fromColors(
+                      highlightColor: Colors.grey[200],
+                      baseColor: Colors.grey[300],
+                      child: Container(
+                        width: double.infinity,
+                        color: Colors.grey[300],
+                      ),
+                    ),
                   );
                 },
               ),
             ),
           ),
-          SizedBox(height: 20),
+          SizedBox(height: 10),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
+              children: [
+                Text(
+                  "Our Products",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold
+                  ),
+                  textAlign: TextAlign.start,
+                ),
+                Spacer(),
+                TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      "Sea All",
+                    ),
+                ),
+              ],
+            ),
+          ),
           Container(
-            color: Colors.grey[200],
+            color: Colors.grey[100],
             child: GridView.count(
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
               crossAxisCount: 2,
-              mainAxisSpacing: 5.0,
-              crossAxisSpacing: 5.0,
+              mainAxisSpacing: 3.0,
+              crossAxisSpacing: 3.0,
               childAspectRatio: 1 / 1.5,
               children: List.generate(
                 model.data.products.length,

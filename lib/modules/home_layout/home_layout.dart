@@ -6,7 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shop_app_final/shared/styles/colors.dart';
 
 class HomeLayout extends StatelessWidget {
-  const HomeLayout({Key key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class HomeLayout extends StatelessWidget {
             bottomNavigationBar: BottomNavigationBar(
               showSelectedLabels: false,
               showUnselectedLabels: false,
-              unselectedItemColor: Colors.black,
+              unselectedItemColor: Colors.grey,
               selectedItemColor: primaryColor,
               onTap: (index) {
                 cubit.changeBottomNav(index);
@@ -41,10 +41,10 @@ class HomeLayout extends StatelessWidget {
                   label: "categories",
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.search,
+                  icon: Icon(Icons.favorite,
                     size: 27,
                   ),
-                  label: "search",
+                  label: "favorite",
                 ),
                 BottomNavigationBarItem(
                   icon: FaIcon(FontAwesomeIcons.shoppingCart,
@@ -53,7 +53,7 @@ class HomeLayout extends StatelessWidget {
                   label: "search",
                 ),
                 BottomNavigationBarItem(
-                  icon: FaIcon(FontAwesomeIcons.user),
+                  icon: FaIcon(FontAwesomeIcons.userAlt),
                   label: "settings",
                 ),
               ],

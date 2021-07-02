@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app_final/models/home_model.dart';
+import 'package:shop_app_final/shared/componants/loading_components/shop_loading/product_image.dart';
 import 'package:shop_app_final/shared/styles/colors.dart';
-import 'package:extended_image/extended_image.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class BuildGridProduct extends StatelessWidget {
   BuildGridProduct({
@@ -17,17 +18,12 @@ class BuildGridProduct extends StatelessWidget {
       child: Column(
         children:
         [
-          // ExtendedImage.network(
-          //   model.image,
-          //   width: double.infinity,
-          //   height: 200,
-          //   cache: true,
-          //
-          // ),
           Stack(
             children: [
-              Image(
-                image: NetworkImage(model.image),
+              CachedNetworkImage(
+                imageUrl: model.image,
+                placeholder: (context, url) => ProductGridLoading(),
+                errorWidget: (context, url, error) => Center(child: Icon(Icons.error)),
                 width: double.infinity,
                 height: 200,
               ),
