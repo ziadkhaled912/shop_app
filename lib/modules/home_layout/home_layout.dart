@@ -11,7 +11,7 @@ class HomeLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => HomeCubit()..getHomeData(),
+      create: (BuildContext context) => HomeCubit()..getHomeData()..getCategoriesData(),
       child: BlocConsumer<HomeCubit, HomeStates>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -34,6 +34,12 @@ class HomeLayout extends StatelessWidget {
                   icon: FaIcon(FontAwesomeIcons.home),
                   label: "home",
                 ),
+                // BottomNavigationBarItem(
+                //   icon: Icon(Icons.remove_red_eye,
+                //     size: 27,
+                //   ),
+                //   label: "trueview",
+                // ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.apps,
                   size: 27,

@@ -53,12 +53,12 @@ ThemeData lightTheme = ThemeData(
     brightness: Brightness.dark,
     backgroundColor: Colors.white,
     titleTextStyle: TextStyle(
-        color: Colors.white,
-        fontSize: 14,
+        color: Colors.black,
+        fontSize: 22,
         fontWeight: FontWeight.bold
     ),
     iconTheme: IconThemeData(
-      color: Colors.white,
+      color: Colors.black,
       size: 30,
     ),
     backwardsCompatibility: false,

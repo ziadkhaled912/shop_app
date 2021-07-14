@@ -18,4 +18,4 @@ void printFullText(String text) {
 }
 
 // token
-String token = '';
+String? token;

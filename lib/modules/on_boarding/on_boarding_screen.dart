@@ -17,9 +17,9 @@ class BoardingModel {
   final String body;
   final bool last;
   BoardingModel({
-    @required this.image,
-    @required this.title,
-    @required this.body,
+    required this.image,
+    required this.title,
+    required this.body,
     this.last = false,
   });
 }

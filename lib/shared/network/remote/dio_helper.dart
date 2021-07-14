@@ -1,8 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 
 class DioHelper {
-  static Dio dio;
+  static late Dio dio;
 
   static init() {
     dio = Dio(
@@ -14,15 +13,15 @@ class DioHelper {
   }
 
   static Future<Response> getData({
-    @required String url,
-    Map<String, dynamic> query,
+    required String url,
+    Map<String, dynamic>? query,
     String lang = 'ar',
-    String token,
+    String? token,
   }) async {
     dio.options.headers = {
       'Content-Type' : 'application/json',
       'lang':lang,
-      'Authorization': token,
+      'Authorization': token??'',
     };
 
     return await dio.get(
@@ -32,24 +31,66 @@ class DioHelper {
   }
 
   static Future<Response> postData({
-    @required String url,
-    Map<String, dynamic> query,
-    @required Map<String, dynamic> data,
+    required String url,
+    required Map<String, dynamic> data,
+    Map<String, dynamic>? query,
     String lang = 'en',
-    String token,
+    String? token,
   }) async
   {
     dio.options.headers =
     {
       'Content-Type' : 'application/json',
       'lang':lang,
-      'Authorization': token,
+      'Authorization': token??'',
     };
 
     return dio.post(
       url,
       queryParameters: query,
       data: data,
+    );
+  }
+  /// Put Data Function
+  static Future<Response> putData({
+    required String url,
+    Map<String, dynamic>? data,
+    Map<String, dynamic>? query,
+    String lang = 'en',
+    String? token,
+  }) async
+  {
+    dio.options.headers =
+    {
+      'Content-Type' : 'application/json',
+      'lang':lang,
+      'Authorization': token??'',
+    };
+    return dio.put(
+      url,
+      data: (data)!,
+      queryParameters: query,
+    );
+  }
+  /// Delete data function
+  static Future<Response> deleteData({
+    required String url,
+    Map<String, dynamic>? data,
+    Map<String, dynamic>? query,
+    String lang = 'en',
+    String? token,
+  }) async {
+    dio.options.headers =
+    {
+      'Content-Type' : 'application/json',
+      'lang':lang,
+      'Authorization': token??'',
+    };
+
+    return dio.delete(
+      url,
+      data: data,
+      queryParameters: query,
     );
   }
 }

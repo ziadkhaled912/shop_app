@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shop_app_final/modules/login/login_screen.dart';
 import 'package:shop_app_final/modules/on_boarding/on_boarding_screen.dart';
 import 'package:shop_app_final/shared/bloc_observer.dart';
+import 'package:shop_app_final/shared/componants/constants.dart';
 import 'package:shop_app_final/shared/cubit/cubit.dart';
 import 'package:shop_app_final/shared/cubit/states.dart';
 import 'package:shop_app_final/shared/network/local/cache_helper.dart';
@@ -21,8 +22,8 @@ void main() async{
 
   Widget widget;
 
-  bool onBoarding = CacheHelper.getData(key: 'onBoarding');
-  String token = CacheHelper.getData(key: "token");
+  bool? onBoarding = CacheHelper.getData(key: 'onBoarding');
+  token = CacheHelper.getData(key: "token");
 
   if(onBoarding != null) {
     if(token != null) widget = HomeLayout();
@@ -35,7 +36,7 @@ void main() async{
 
 class MyApp extends StatelessWidget {
 
-  final Widget startWidget;
+  final Widget? startWidget;
 
   MyApp({
     this.startWidget,

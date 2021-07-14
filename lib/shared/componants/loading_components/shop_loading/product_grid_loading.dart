@@ -11,8 +11,8 @@ class GridProductLoading extends StatelessWidget {
       child: Column(
         children: [
           Shimmer.fromColors(
-            highlightColor: Colors.grey[200],
-            baseColor: Colors.grey[300],
+            highlightColor: (Colors.grey[200])!,
+            baseColor: (Colors.grey[300])!,
             child: Container(
               height: 200,
               width: double.infinity,
@@ -29,8 +29,8 @@ class GridProductLoading extends StatelessWidget {
                 children:
                 [
                   Shimmer.fromColors(
-                    highlightColor: Colors.grey[200],
-                    baseColor: Colors.grey[300],
+                    highlightColor: (Colors.grey[200])!,
+                    baseColor: (Colors.grey[300])!,
                     child: Container(
                       width: MediaQuery.of(context).size.width * 0.5,
                       height: 14,
@@ -39,8 +39,8 @@ class GridProductLoading extends StatelessWidget {
                   ),
                   SizedBox(height: 10),
                   Shimmer.fromColors(
-                    highlightColor: Colors.grey[200],
-                    baseColor: Colors.grey[300],
+                    highlightColor: (Colors.grey[200])!,
+                    baseColor: (Colors.grey[300])!,
                     child: Container(
                       width: MediaQuery.of(context).size.width * 0.2,
                       height: 14,

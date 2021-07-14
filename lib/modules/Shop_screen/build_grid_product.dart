@@ -6,11 +6,18 @@ import 'package:cached_network_image/cached_network_image.dart';
 
 class BuildGridProduct extends StatelessWidget {
   BuildGridProduct({
-    @required this.model
+    required this.model,
+    required this.favorites,
+    required this.changeFavorites,
+    required this.changeCart,
+    required this.cart,
   });
 
   final ProductModel model;
-
+  final Map favorites;
+  final cart;
+  final changeFavorites;
+  final changeCart;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -51,15 +58,17 @@ class BuildGridProduct extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: CircleAvatar(
                       radius: 17,
-                      backgroundColor: Colors.white,
+                      backgroundColor: favorites[model.id] ? primaryColor : Colors.white,
                       child: IconButton(
                         padding: EdgeInsets.all(0),
                         icon: Icon(
-                          Icons.favorite_border,
-                          color: Colors.grey[400],
+                          favorites[model.id] ? Icons.favorite : Icons.favorite_border,
+                          color: favorites[model.id] ? Colors.white : Colors.grey[400],
                           size: 23.5,
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          changeFavorites(model.id);
+                        },
                       ),
                     ),
                   ),
@@ -110,10 +119,13 @@ class BuildGridProduct extends StatelessWidget {
                       IconButton(
                         padding: EdgeInsets.all(0),
                           icon: Icon(
-                            Icons.add_shopping_cart,
+                            cart[model.id] ? Icons.shopping_cart : Icons.add_shopping_cart,
                             size: 20,
+                            color: cart[model.id] ? primaryColor : Colors.black,
                           ),
-                          onPressed: (){}
+                          onPressed: (){
+                            changeCart(model.id);
+                          }
                           ),
                     ],
                   ),

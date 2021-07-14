@@ -18,10 +18,9 @@ class LoginScreen extends StatelessWidget
   Widget build(BuildContext context) {
 
     // Form Key
-    var formKey = GlobalKey<FormState>();
     // Controllers
-    var emailController = TextEditingController();
-    var passwordController = TextEditingController();
+    TextEditingController emailController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
 
     return BlocProvider(
       create: (BuildContext context) => LoginCubit(),
@@ -31,19 +30,19 @@ class LoginScreen extends StatelessWidget
           {
             if(state.loginModel.status) {
               showToast(
-                  msg: state.loginModel.message,
+                  msg: (state.loginModel.message)!,
                   state: ToastStates.SUCCESS,
               );
 
               CacheHelper.saveData(
                   key: "token",
-                  value: state.loginModel.data.token,
+                  value: state.loginModel.data!.token,
               ).then((value) {
                 navigateToAndFinish(context, HomeLayout());
               });
             } else {
               showToast(
-                msg: state.loginModel.message,
+                msg: (state.loginModel.message)!,
                 state: ToastStates.ERROR,
               );
             }
@@ -51,6 +50,8 @@ class LoginScreen extends StatelessWidget
         },
         builder: (context, state)
         {
+          final formKey = GlobalKey<FormState>();
+          print(formKey.currentState);
           var cubit = LoginCubit.get(context);
 
           return Scaffold(
@@ -157,10 +158,11 @@ class LoginScreen extends StatelessWidget
                           ),
                           defaultFormField(
                             controller: emailController,
-                            validation: (String value) {
-                              if(value.isEmpty){
+                            validation: (value) {
+                              if(value == null || value.isEmpty){
                                 return 'please enter your email address';
                               }
+                              return null;
                             },
                             labelText: 'Email Address',
                             type: TextInputType.emailAddress,
@@ -169,20 +171,21 @@ class LoginScreen extends StatelessWidget
                           SizedBox(height: 20),
                           defaultFormField(
                             controller: passwordController,
-                            validation: (String value) {
-                              if(value.isEmpty){
+                            validation: (String? value) {
+                              if(value == null || value.isEmpty){
                                 return 'Password is too short';
                               }
+                              return null;
                               },
                             labelText: 'Password',
                             type: TextInputType.emailAddress,
                             secure: cubit.isSecure,
                             suffix: cubit.suffix,
                             onSubmit: (value) {
-                              if(formKey.currentState.validate()){
+                              if(formKey.currentState != null && formKey.currentState!.validate()){
                                 cubit.userLogin(
-                                email: emailController.text,
-                                password: passwordController.text,
+                                  email: emailController.text,
+                                  password: passwordController.text,
                                 );
                               }
                             },
@@ -209,7 +212,7 @@ class LoginScreen extends StatelessWidget
                             conditionBuilder: (context) => state is! LoginLoadingState,
                             widgetBuilder:(context) => defaultButton(
                               onPressed: () {
-                                if(formKey.currentState.validate()){
+                                if(formKey.currentState != null && formKey.currentState!.validate()){
                                   cubit.userLogin(
                                     email: emailController.text,
                                     password: passwordController.text,

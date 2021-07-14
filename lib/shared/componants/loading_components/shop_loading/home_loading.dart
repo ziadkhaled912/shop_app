@@ -12,8 +12,8 @@ class HomeLoading extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Shimmer.fromColors(
-              highlightColor: Colors.grey[200],
-              baseColor: Colors.grey[300],
+              highlightColor: (Colors.grey[200])!,
+              baseColor: (Colors.grey[300])!,
               child: Container(
                 height: 190,
                 width: double.infinity,
