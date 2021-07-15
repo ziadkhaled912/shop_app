@@ -215,6 +215,7 @@ class HomeCubit extends Cubit<HomeStates>
     required int itemId,
     required int quantity,
   }) {
+    emit(UpdateCartLoading());
     DioHelper.putData(
       url: CART + '/$itemId',
       token: token,
@@ -225,7 +226,6 @@ class HomeCubit extends Cubit<HomeStates>
     ).then((value) {
       updateCartModel = UpdateCartModel.fromJson(value.data);
       getCart();
-      print(updateCartModel!.message);
       emit(UpdateCartSuccess());
     }).catchError((error) {
       printFullText(error.toString());
@@ -266,6 +266,37 @@ class HomeCubit extends Cubit<HomeStates>
       emit(GetUserDataSuccessState());
     }).catchError((error) {
       printFullText(error.toString());
+      emit(GetUserDataErrorState());
+    });
+  }
+
+  // update user function
+  LoginModel? updateModel;
+  void updateUser({
+    required String name,
+    required String phoneNumber,
+  }) {
+    emit(GetUserDataLoadingState());
+
+    DioHelper.putData(
+      url: UPDATE_PROFILE,
+      data:
+      {
+        "name": name,
+        "phone": phoneNumber,
+        "email": userModel!.data!.email,
+        "password": "123456",
+        "image": 'safasfsa',
+      },
+      token: token,
+      lang: 'en',
+    ).then((value) {
+      updateModel = LoginModel.fromJson(value.data);
+      getUserData();
+      print(userModel!.message);
+      emit(GetUserDataSuccessState());
+    }).catchError((error) {
+      print(error.toString());
       emit(GetUserDataErrorState());
     });
   }

@@ -42,6 +42,8 @@ class GetCartError extends HomeStates{}
 
 class UpdateCartSuccess extends HomeStates{}
 
+class UpdateCartLoading extends HomeStates{}
+
 class UpdateCartError extends HomeStates{}
 
 /// Get user data

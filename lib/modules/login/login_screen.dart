@@ -8,6 +8,7 @@ import 'package:shop_app_final/modules/login/cubit/cubit.dart';
 import 'package:shop_app_final/modules/login/cubit/states.dart';
 import 'package:shop_app_final/modules/register/register_screen.dart';
 import 'package:shop_app_final/shared/componants/componants.dart';
+import 'package:shop_app_final/shared/componants/constants.dart';
 import 'package:shop_app_final/shared/network/local/cache_helper.dart';
 import 'package:shop_app_final/shared/styles/colors.dart';
 
@@ -38,6 +39,7 @@ class LoginScreen extends StatelessWidget
                   key: "token",
                   value: state.loginModel.data!.token,
               ).then((value) {
+                token = state.loginModel.data!.token;
                 navigateToAndFinish(context, HomeLayout());
               });
             } else {
@@ -60,6 +62,13 @@ class LoginScreen extends StatelessWidget
             appBar: AppBar(
               title: Text(
                 'log in'.toUpperCase(),
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18
+                ),
+              ),
+              iconTheme: IconThemeData(
+                color: Colors.white,
               ),
               centerTitle: true,
               backgroundColor: backgroundColor,

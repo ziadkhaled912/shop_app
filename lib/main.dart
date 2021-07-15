@@ -9,8 +9,8 @@ import 'package:shop_app_final/shared/cubit/states.dart';
 import 'package:shop_app_final/shared/network/local/cache_helper.dart';
 import 'package:shop_app_final/shared/network/remote/dio_helper.dart';
 import 'package:shop_app_final/shared/styles/themes.dart';
-
 import 'modules/home_layout/home_layout.dart';
+import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 
 void main() async{
   // Bloc observer
@@ -18,6 +18,7 @@ void main() async{
   // To make sure run widgets after initialization (when main is async)
   WidgetsFlutterBinding.ensureInitialized();
   DioHelper.init(); // Dio Initialize
+  Settings.init(); // Setting Initialize
   await CacheHelper.init(); // Cache Initialize
 
   Widget widget;

@@ -126,6 +126,7 @@ Widget defaultFormField({
   bool isClickable = true,
   Function(String)? onChanged,
   TextInputAction? actionBtn,
+  bool enableBorders = false,
 }) =>
     TextFormField(
       validator: validation,
@@ -141,6 +142,10 @@ Widget defaultFormField({
           },
           icon: Icon(suffix),
         ),
+
+        border: enableBorders ? OutlineInputBorder(
+          borderSide: BorderSide(width: 5.0),
+        ) : null,
       ),
       keyboardType: type,
       textInputAction: actionBtn,

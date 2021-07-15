@@ -99,6 +99,8 @@ class CartScreen extends StatelessWidget {
                             ),
                           ),
                         ),
+                        if(state is UpdateCartLoading || state is GetCartLoading)
+                          LinearProgressIndicator(),
                         SizedBox(height: 10),
                         ListView.separated(
                           physics: NeverScrollableScrollPhysics(),

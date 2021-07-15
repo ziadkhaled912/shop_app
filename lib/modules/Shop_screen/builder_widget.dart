@@ -63,23 +63,20 @@ class BuilderWidget extends StatelessWidget {
             ),
           ),
           // Categories Title
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Row(
-              children: [
-                titleWidget(
-                  text: "Hot Categories",
-                  color: Colors.black,
+          Row(
+            children: [
+              titleWidget(
+                text: "Hot Categories",
+                color: Colors.black,
+              ),
+              Spacer(),
+              TextButton(
+                onPressed: () {},
+                child: Text(
+                  "Sea All",
                 ),
-                Spacer(),
-                TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    "Sea All",
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
           // Categories Slider
           Container(
@@ -93,27 +90,25 @@ class BuilderWidget extends StatelessWidget {
                 itemCount: categoriesModel.data!.categories.length,
               scrollDirection: Axis.horizontal,
               physics: BouncingScrollPhysics(),
+              padding: EdgeInsets.symmetric(horizontal: 16),
             ),
           ),
           SizedBox(height: 10),
           // Products Title
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Row(
-              children: [
-                titleWidget(
-                    text: "Our Products",
-                  color: Colors.black,
-                ),
-                Spacer(),
-                TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      "Sea All",
-                    ),
-                ),
-              ],
-            ),
+          Row(
+            children: [
+              titleWidget(
+                  text: "Our Products",
+                color: Colors.black,
+              ),
+              Spacer(),
+              TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    "Sea All",
+                  ),
+              ),
+            ],
           ),
           // Products grid
           Container(

@@ -12,6 +12,16 @@ class LoginCubit extends Cubit<LoginStates> {
 
   static LoginCubit get(context) => BlocProvider.of(context);
 
+  bool isSecure = true; // Secure
+  IconData suffix = Icons.visibility;
+
+  void changePasswordVisibility()
+  {
+    isSecure = !isSecure;
+    suffix = isSecure ? Icons.visibility : Icons.visibility_off;
+
+    emit(LoginChangePasswordState());
+  }
   // Login Model
   late LoginModel loginModel;
 
@@ -40,14 +50,35 @@ class LoginCubit extends Cubit<LoginStates> {
     });
   }
 
-  bool isSecure = true; // Secure
-  IconData suffix = Icons.visibility;
+  // register function
+  late LoginModel registerModel;
 
-  void changePasswordVisibility()
-  {
-    isSecure = !isSecure;
-    suffix = isSecure ? Icons.visibility : Icons.visibility_off;
+  void userRegister({
+    required String name,
+    required String phone,
+    required String email,
+    required String password,
+  }) {
+    emit(LoginLoadingState());
 
-    emit(LoginChangePasswordState());
+    DioHelper.postData(
+      url: REGISTER,
+      data:
+      {
+        'name' : name,
+        'email': email,
+        'password': password,
+        'phone': phone,
+      },
+    ).then((value)
+    {
+      registerModel = LoginModel.fromJson(value.data);
+      print(registerModel.message);
+      emit(LoginSuccessState(registerModel));
+    }).catchError((error)
+    {
+      print(error.toString());
+      emit(LoginErrorState(error.toString()));
+    });
   }
 }
